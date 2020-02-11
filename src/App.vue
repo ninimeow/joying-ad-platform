@@ -1,7 +1,7 @@
 
 <template>
   <div class="layout">
-    <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
+    <Sider class="layout-sider">
       <div class="logo"></div>
       <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
         <Submenu name="1">
@@ -46,8 +46,17 @@ export default {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+.layout-sider {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  overflow: auto;
+  user-select: none;
+}
+
 .header {
   background: #fff;
+  user-select: none;
 }
 
 .logo {
