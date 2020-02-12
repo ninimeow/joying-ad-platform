@@ -7,11 +7,20 @@
         <Menu active-name="1-2" theme="dark" width="auto" @on-select="select" :class="menuitemClasses">
           <Submenu name="1">
             <template slot="title">
-              <Icon type="ios-apps"></Icon><span>营销活动管理</span>
+              <Icon type="md-aperture" /><span>EDM</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="1-1">EDM</MenuItem>
-              <MenuItem name="1-2">营销活动</MenuItem>
+              <MenuItem name="1-1">模版管理</MenuItem>
+              <MenuItem name="1-2">EDM管理</MenuItem>
+            </div>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
+              <Icon type="ios-apps"></Icon><span>H5页面</span>
+            </template>
+            <div class="sub-menu">
+              <MenuItem name="2-1">模版管理</MenuItem>
+              <MenuItem name="2-2">H5页面管理</MenuItem>
             </div>
           </Submenu>
         </Menu>
