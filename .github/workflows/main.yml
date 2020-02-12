@@ -37,6 +37,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+          BRANCH: master
           ARGS: "-avz --delete"
           SOURCE: "./dist/"
           REMOTE_HOST: "129.211.92.44"
