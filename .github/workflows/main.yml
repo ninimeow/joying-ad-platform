@@ -1,0 +1,30 @@
+name: vue-deploy
+
+on:
+  push:
+    branches:    
+      - master
+
+jobs:
+  vue-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # npm install
+      - name: npm install and build
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: true
+      # Deploy
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+          ARGS: "-avz --delete"
+          SOURCE: "./dist/"
+          REMOTE_HOST: "129.211.92.44"
+          REMOTE_USER: "root"
+          TARGET: "/usr/local/nginx/html/h5/joying-ad-platform"
