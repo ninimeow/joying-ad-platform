@@ -19,10 +19,10 @@ jobs:
         with:
           args: git submodule update --init --recursive
       # 使用 node:10
-      - name: use Node.js 10
+      - name: use Node.js 10.x
         uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 10.x
       # npm install
       - name: npm install and build
         run: |
@@ -30,15 +30,15 @@ jobs:
           npm run build
         env:
           CI: true
-          FOLDER: dist
       # Deploy
       - name: deploy
-        uses: easingthemes/ssh-deploy@v2.0.7
+        uses: easingthemes/ssh-deploy@v2.0.8
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-          ARGS: "-avz --delete"
-          SOURCE: "./dist/"
           REMOTE_HOST: "129.211.92.44"
           REMOTE_USER: "root"
-          TARGET: "/usr/local/nginx/html/h5/"
+          REMOTE_PORT: "22"
+          SOURCE: "./dist/"
+          TARGET: "/usr/local/nginx/html/h5"
+          ARGS: "-avz --delete"
+          
