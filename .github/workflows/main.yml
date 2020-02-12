@@ -38,7 +38,7 @@ jobs:
           REMOTE_HOST: "129.211.92.44"
           REMOTE_USER: "root"
           REMOTE_PORT: "22"
-          SOURCE: "./dist/"
+          SOURCE: "src/assets/"
           TARGET: "/usr/local/nginx/html/h5"
           ARGS: "-avz --delete"
           
