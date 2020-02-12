@@ -77,7 +77,6 @@ export default {
 .layout {
   background: #f5f7f9;
   position: relative;
-  border-radius: 4px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
