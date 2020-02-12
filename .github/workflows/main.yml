@@ -33,11 +33,10 @@ jobs:
           FOLDER: dist
       # Deploy
       - name: deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: easingthemes/ssh-deploy@v2.0.7
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           SSH_PRIVATE_KEY: ${{ secrets.KEY }}
-          BRANCH: master
           ARGS: "-avz --delete"
           SOURCE: "./dist/"
           REMOTE_HOST: "129.211.92.44"
