@@ -32,6 +32,6 @@ jobs:
           username: "root"
           password: ${{ secrets.KEY }}
           port: "22"
-          source: "dist/static dist/index.html"
+          source: "dist/static,dist/index.html"
           target: "/usr/local/nginx/html/h5/"
           
