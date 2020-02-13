@@ -10,8 +10,8 @@
               <Icon type="md-aperture" /><span>EDM</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="1-1">模版管理</MenuItem>
-              <MenuItem name="1-2">EDM管理</MenuItem>
+              <MenuItem name="1-1" :to="{name: 'Template', query: {type: 'edm'}}">模版管理</MenuItem>
+              <MenuItem name="1-2" :to="{name: 'Template', query: {type: 'edm'}}">EDM管理</MenuItem>
             </div>
           </Submenu>
           <Submenu name="2">
@@ -46,7 +46,9 @@
       </Header>
       <Content>
         <Card>
-          <div style="height: 600px">Content</div>
+          <div style="min-height: 600px">
+            <router-view></router-view>
+          </div>
         </Card>
       </Content>
     </Layout>
@@ -89,6 +91,7 @@ export default {
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 .layout-header-bar {
   background: #fff;
