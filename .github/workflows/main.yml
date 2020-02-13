@@ -1,0 +1,39 @@
+name: vue-deploy
+
+on:
+  push:
+    branches:    
+      - master
+
+jobs:
+  vue-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@master
+      # 使用 node:10
+      - name: use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      # npm install
+      - name: npm install and build
+        run: |
+          npm install
+          npm run build
+      # Deploy
+      - name: deploy
+        uses: appleboy/scp-action@master
+        with:
+          host: "129.211.92.44"
+          username: "root"
+          password: ${{ secrets.KEY }}
+          port: "22"
+          source: "dist/static,dist/index.html"
+          target: "/usr/local/nginx/html/h5/"
+          strip_components: 1
+          rm: "true"
+          
