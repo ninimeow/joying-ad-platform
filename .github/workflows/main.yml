@@ -35,5 +35,5 @@ jobs:
           source: "dist/static,dist/index.html"
           target: "/usr/local/nginx/html/h5/"
           strip_components: 1
-          overwrite: "--overwrite"
+          rm: "true"
           
