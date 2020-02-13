@@ -4,7 +4,6 @@
   "description": "A Vue.js project",
   "author": "盛天霓",
   "private": true,
-  "homepage":"https://ninimeow.github.io/joying-ad-platform",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
