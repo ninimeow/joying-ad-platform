@@ -109,10 +109,11 @@ export default {
 </script>
 
 <style scoped>
-/deep/ ul,li{
+/deep/ ul,li,em{
   list-style: none;
   margin: 0;
   padding: 0;
+  font-style: normal;
 }
 .layout {
   background: #f5f7f9;
