@@ -13,7 +13,7 @@ export default new Router({
   {
     path: '/template',
     name: 'Template',
-    component: () => import('@/views/Template')
+    component: () => import('@/views/Template/Template')
   }
   ]
 })
