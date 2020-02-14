@@ -23,6 +23,12 @@ export default new Router({
           name: 'EDMTemplate',
           component: () => import('@/views/Template/Template'),
           meta: { title: 'EDM模版' }
+        },
+        {
+          path: 'editor',
+          name: 'EDMEditor',
+          component: () => import('@/views/Editor/Editor'),
+          meta: { title: 'EDM编辑器' }
         }
       ]
     }, {
@@ -42,6 +48,12 @@ export default new Router({
           name: 'H5Template',
           component: () => import('@/views/Template/Template'),
           meta: { title: 'H5页面模版' }
+        },
+        {
+          path: 'editor',
+          name: 'H5Editor',
+          component: () => import('@/views/Editor/Editor'),
+          meta: { title: 'H5页面编辑器' }
         }
       ]
     }]

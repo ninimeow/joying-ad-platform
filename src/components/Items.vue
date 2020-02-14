@@ -3,15 +3,15 @@
     <card>
       <Icon type="ios-phone-portrait" />
     </card>
-    <card class="option" v-if="showEdit">
-      <span>
+    <card class="option" v-show="showEdit">
+      <router-link :to="{name: 'preview'}" tag="span">
         <Icon type="md-arrow-dropright" />
         <em>预览</em>
-      </span>
-      <span>
+      </router-link>
+      <router-link :to="{name: 'EDMEditor'}" tag="span">
         <Icon type="ios-create" />
         <em>编辑</em>
-      </span>
+      </router-link>
     </card>{{item}}
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
   methods: {
     show () {
       this.showEdit = !this.showEdit
-      console.log(this.showEdit)
     }
   }
 }
