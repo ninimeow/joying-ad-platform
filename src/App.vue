@@ -10,7 +10,7 @@
               <Icon type="md-aperture" /><span>EDM</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="1-1" :to="{name: 'Template', query: {type: 'edm'}}">模版管理</MenuItem>
+              <MenuItem name="1-1" :to="{name: 'EDMTemplate'}">模版管理</MenuItem>
               <MenuItem name="edm" to="/edmPage/edm">EDM管理</MenuItem>
             </div>
           </Submenu>
@@ -19,7 +19,7 @@
               <Icon type="ios-apps"></Icon><span>H5页面</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="h5Template">模版管理</MenuItem>
+              <MenuItem name="h5Template" :to="{name: 'H5Template'}">模版管理</MenuItem>
               <MenuItem name="h5" to="/h5page/h5">H5页面管理</MenuItem>
             </div>
           </Submenu>

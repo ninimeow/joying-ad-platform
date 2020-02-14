@@ -1,41 +1,47 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Edm from '@/components/Edm'
-import H5 from '@/components/H5'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/template',
-      name: 'Template',
-      component: () => import('@/views/Template/Template')
-    },
+
     {
       path: '/edmPage',
       name: 'EdmPage',
       meta: { title: 'EDM' },
-      component: Edm,
+      component: () => import('@/views/Page/Page'),
       children: [
         {
           path: 'edm',
           name: 'edm',
-          component: Edm,
+          component: () => import('@/views/EDM/EDM'),
           meta: { title: 'EDM管理' }
+        },
+        {
+          path: 'template',
+          name: 'EDMTemplate',
+          component: () => import('@/views/Template/Template'),
+          meta: { title: 'EDM模版' }
         }
       ]
     }, {
       path: '/h5page',
       name: 'H5Page',
-      component: H5,
+      component: () => import('@/views/Page/Page'),
       meta: { title: 'H5页面' },
       children: [
         {
           path: 'h5',
           name: 'h5',
-          component: H5,
+          component: () => import('@/views/H5/H5'),
           meta: { title: 'H5页面管理' }
+        },
+        {
+          path: 'template',
+          name: 'H5Template',
+          component: () => import('@/views/Template/Template'),
+          meta: { title: 'H5页面模版' }
         }
       ]
     }]
