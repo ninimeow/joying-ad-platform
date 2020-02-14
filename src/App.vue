@@ -1,17 +1,17 @@
 
 <template>
   <div class="layout">
-    <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed" :width="256" >
+    <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed" :width="256" :style="{position: 'fixed', height: '100vh', left: 0, 'z-index':'99'}">
       <div class="sider">
         <div class="logo"></div>
-        <Menu active-name="1-2" theme="dark" width="auto" @on-select="select" :class="menuitemClasses">
+        <Menu :active-name="currentPath" theme="dark" width="auto" accordion :class="menuitemClasses" ref="menu" @on-select="select">
           <Submenu name="1">
             <template slot="title">
               <Icon type="md-aperture" /><span>EDM</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="1-1">模版管理</MenuItem>
-              <MenuItem name="1-2">EDM管理</MenuItem>
+              <MenuItem name="1-1" :to="{name: 'EDMTemplate'}">模版管理</MenuItem>
+              <MenuItem name="edm" to="/edmPage/edm">EDM管理</MenuItem>
             </div>
           </Submenu>
           <Submenu name="2">
@@ -19,22 +19,21 @@
               <Icon type="ios-apps"></Icon><span>H5页面</span>
             </template>
             <div class="sub-menu">
-              <MenuItem name="2-1">模版管理</MenuItem>
-              <MenuItem name="2-2">H5页面管理</MenuItem>
+              <MenuItem name="h5Template" :to="{name: 'H5Template'}">模版管理</MenuItem>
+              <MenuItem name="h5" to="/h5page/h5">H5页面管理</MenuItem>
             </div>
           </Submenu>
         </Menu>
       </div>
     </Sider>
-    <Layout>
+    <Layout :style="{'margin-left': siderWidth, 'height': '100vh'}">
       <Header class="header">
         <div class="header-content" :style="{width: headWidth}">
           <div>
-            <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="ios-arrow-dropleft" size="24"/>
+            <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 0 0 20px'}" type="ios-arrow-dropleft" size="24"/>
             <Breadcrumb>
-              <BreadcrumbItem to="/">Home</BreadcrumbItem>
-              <BreadcrumbItem to="/">Components</BreadcrumbItem>
-              <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
+              <BreadcrumbItem>招赢营销活动管理平台</BreadcrumbItem>
+              <BreadcrumbItem v-for=" (item ,i) in breadCrumbList" :key="i">{{item.meta.title}}</BreadcrumbItem>
             </Breadcrumb>
           </div>
           <div class="i-layout-header-right">
@@ -45,20 +44,20 @@
         </div>
       </Header>
       <Content>
-        <Card>
-          <div style="height: 600px">Content</div>
-        </Card>
+        <router-view></router-view>
       </Content>
     </Layout>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'App',
   data () {
     return {
-      isCollapsed: false
+      isCollapsed: false,
+      breadCrumbList: null
     }
   },
   computed: {
@@ -70,25 +69,59 @@ export default {
     },
     headWidth () {
       return this.isCollapsed ? 'calc(100% - 78px)' : 'calc(100% - 256px)'
+    },
+    siderWidth () {
+      return this.isCollapsed ? '78px' : '256px'
+    },
+    currentPath () {
+      return this.$route.name
+    }
+  },
+  mounted () {
+    this.breadCrumbList = this.$route.matched
+  },
+  watch: {
+    $route () {
+      this.breadCrumbList = []
+      this.breadCrumbList = this.$route.matched
     }
   },
   methods: {
     collapsedSider () {
       this.$refs.side1.toggleCollapse()
+      this.closeSubmenu()
     },
-    select () {
+    select (name) {
+      if (this.isCollapsed) {
+        this.closeSubmenu()
+      }
+    },
+    closeSubmenu () {
+      this.$nextTick(() => {
+        var submenu = this.$refs.menu.$children
+        submenu.forEach(item => {
+          item.opened = false
+        })
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+/deep/ ul,li,em{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+}
 .layout {
   background: #f5f7f9;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 .layout-header-bar {
   background: #fff;
@@ -125,6 +158,7 @@ export default {
   border-radius: 3px;
   overflow: hidden;
   width: 150px;
+  z-index: 99;
 }
 .collapsed-menu /deep/ .ivu-menu-vertical .ivu-menu-item{
   padding-left: 15px;
@@ -161,21 +195,12 @@ export default {
   text-align: center;
   overflow: hidden;
 }
-/deep/ .ivu-card-bordered{
-  border: none;
-  background: none;
-}
-/deep/ .ivu-card-bordered:hover{
-  box-shadow: none;
-}
-/deep/ .ivu-card-body{
-  background: #fff;
-  margin: 20px;
-}
+
 .menu-icon{
   transition: all .3s;
 }
 .rotate-icon{
   transform: rotate(-180deg);
 }
+
 </style>
